@@ -1,10 +1,7 @@
 FROM node:18-alpine as main
-WORKDIR '/app'
+WORKDIR "/app"
 COPY package.json .
 RUN npm i
 COPY . .
-RUN npm build
-
-FROM nginx
-COPY --from=main '/app/build' '/usr/share/nginx/html'
+CMD ["npm", "run", "start"]
 
